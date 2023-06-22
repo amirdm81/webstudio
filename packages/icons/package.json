@@ -1,0 +1,61 @@
+{
+  "name": "@webstudio-is/icons",
+  "version": "0.75.0",
+  "description": "Webstudio Icons",
+  "author": "Webstudio <github@webstudio.is>",
+  "homepage": "https://webstudio.is",
+  "type": "module",
+  "scripts": {
+    "dev": "build-package --watch",
+    "build": "build-package",
+    "dts": "tsc --declarationDir lib/types",
+    "generate": "rm -fr src/__generated__ && NODE_OPTIONS='--loader=tsx' svgo-jsx svgo-jsx.config.ts && tsx svg-string.ts && prettier --write ./",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false",
+    "lint": "eslint ./src --ext .ts,.tsx --max-warnings 0",
+    "checks": "pnpm typecheck && pnpm lint",
+    "storybook:run": "start-storybook -p 6006",
+    "storybook:build": "build-storybook"
+  },
+  "devDependencies": {
+    "@storybook/react": "^6.5.16",
+    "@svgo/jsx": "^0.4.2",
+    "@types/react": "^18.0.35",
+    "@webstudio-is/scripts": "workspace:^",
+    "@webstudio-is/storybook-config": "workspace:^",
+    "@webstudio-is/tsconfig": "workspace:^",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "svgo": "^3.0.2",
+    "tsx": "^3.12.6",
+    "typescript": "5.1.3"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "dependencies": {
+    "@webstudio-is/css-vars": "workspace:^"
+  },
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./lib/types/index.d.ts",
+      "import": "./lib/index.js",
+      "require": "./lib/cjs/index.js"
+    },
+    "./svg": {
+      "source": "./src/__generated__/svg/index.ts",
+      "types": "./lib/types/__generated__/svg/index.d.ts",
+      "import": "./lib/__generated__/svg/index.js",
+      "require": "./lib/cjs/__generated__/svg/index.js"
+    }
+  },
+  "files": [
+    "lib/*",
+    "src/*",
+    "!*.test.*"
+  ],
+  "license": "MIT",
+  "private": false,
+  "sideEffects": false
+}

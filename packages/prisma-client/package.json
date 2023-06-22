@@ -1,0 +1,53 @@
+{
+  "name": "@webstudio-is/prisma-client",
+  "version": "0.75.0",
+  "description": "Webstudio Prisma layer",
+  "author": "Webstudio <github@webstudio.is>",
+  "homepage": "https://webstudio.is",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false",
+    "lint": "eslint ./src --ext .ts,.tsx --max-warnings 0",
+    "checks": "pnpm typecheck && pnpm lint",
+    "dev": "prisma generate --watch & build-package --watch --no-generated-as-entries",
+    "build": "prisma format && prisma generate && build-package --no-generated-as-entries",
+    "dts": "tsc --declarationDir lib",
+    "migrations": "./migrations-cli/cli.ts"
+  },
+  "bin": {
+    "migrations": "./migrations-cli/cli.ts"
+  },
+  "devDependencies": {
+    "@prisma/client": "^4.14.0",
+    "@types/node": "^18.11.18",
+    "@types/uuid": "^8.3.4",
+    "@webstudio-is/scripts": "workspace:^",
+    "@webstudio-is/tsconfig": "workspace:^",
+    "prisma": "^4.14.0",
+    "tsx": "^3.12.6",
+    "typescript": "5.1.3",
+    "zod": "^3.21.4"
+  },
+  "exports": {
+    "source": "./src/index.ts",
+    "types": "./lib/index.d.ts",
+    "import": "./lib/index.js",
+    "require": "./lib/cjs/index.js"
+  },
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "@inquirer/confirm": "^0.0.25-alpha.0",
+    "@types/minimist": "^1.2.2",
+    "dotenv": "^16.0.0",
+    "execa": "^6.1.0",
+    "minimist": "^1.2.6",
+    "nanoid": "^3.3.6",
+    "umzug": "^3.2.1",
+    "uuid": "^9.0.0"
+  },
+  "peerDependencies": {
+    "zod": "^3.19.1"
+  },
+  "sideEffects": false
+}
